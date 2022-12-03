@@ -1,0 +1,57 @@
+version: "3.8"
+
+services:
+
+  jenkins:
+    image: jenkins/jenkins:2.375.1-lts-jdk11
+    ports:
+      - 8080:8080
+      - 50000:50000
+    volumes:
+      - jenkinsData:/var/jenkins_home
+    domainname: jenkins
+
+  mysql:
+    image: mysql:5.6.51
+    ports:
+      - 3306:3306
+    volumes:
+      - mysqlData:/var/lib/mysql
+    environment:
+      - "MYSQL_ROOT_PASSWORD=root"
+    domainname: mysql56
+
+  mongo:
+    image: mongo:4.0.28
+    ports:
+      - 27017:27017
+    volumes:
+      - mongoData:/data/db
+    domainname: mongo
+
+  mongo-express:
+    image: mongo-express:0.54.0
+    restart: always
+    ports:
+      - 8081:8081
+
+#  yapi:
+#    image: yapipro/yapi:1.9.5
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
+volumes:
+  mysqlData:
+  mongoData:
+  jenkinsData:
