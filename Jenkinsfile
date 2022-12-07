@@ -4,6 +4,7 @@ pipeline {
     stages {
         stage('拉取git代码') {
             steps {
+                checkout([$class: 'GitSCM', branches: [[name: "${tag}"]], extensions: [], userRemoteConfigs: [[url: 'https://github.com/AypakNanot/demo-1.git']]])
                 echo '拉取git代码 - SUCCESS'
             }
         }
